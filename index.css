@@ -1,0 +1,68 @@
+.main tr {
+    border: 3px solid blue;
+    font-weight:bold;
+    color: black;
+    font-size: xx-large;
+    width: 80px;
+    height: 80px;
+
+}
+.colls tr{
+    background-color: black;
+
+}
+.main td{
+    border: 3px solid blue;
+    font-weight:bold;
+    color: black;
+    font-size: xx-large;
+    width: 80px;
+    height: 80px;
+}
+.colls td{
+    background-color: black;
+
+}
+
+.main{
+    margin-top: 500px;
+    margin: auto;
+    border-collapse: collapse;
+}
+
+.scr_tab th{
+    border: 2px solid black;
+    border-collapse: collapse;
+    width:450px;
+    text-align: center;
+
+}
+
+.scr_tab tr{
+    border: 2px solid black;
+    border-collapse: collapse;
+    width:450px;
+    text-align: center;
+
+}
+
+.scr_tab td, tbody{
+    border: 2px solid black;
+    border-collapse: collapse;
+    width:450px;
+    text-align: center;
+}
+
+.dynam{
+    border: 2px solid black;
+    border-collapse: collapse;
+    width:450px;
+}
+
+.trcol{
+    background-color: black;
+}
+
+.trcol1{
+    background-color: red;
+}

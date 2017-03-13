@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="index.css">
+    <script src="index.js"></script>
+</head>
+<body id="bodys">
+
+<div>
+    <h1 class="text-center">TIC TAC TOE</h1>
+</div>
+
+<div id="fom">
+    <div class="form-group" style="float: left; margin-left:50px ">
+        <label>Player One:</label>
+        <input type="text" class="form-control" id="P1" placeholder="Player One Name">
+        <label>Choose what you want</label>
+        <label class="radio-inline">
+            <input type="radio" id="p1X" onclick="radio_logic()">X
+        </label>
+        <label class="radio-inline">
+            <input type="radio" id="p1O" onclick="radio_logic()">O
+        </label>
+    </div>
+    <div class="form-group" style="float: right; margin-right: 50px">
+        <label>Player Two:</label>
+        <input type="text" class="form-control" id="P2" placeholder="Player Two Name">
+        <label>Choose what you want</label>
+        <label class="radio-inline">
+            <input type="radio" id="p2X" onclick="radio_logic()">X
+        </label>
+        <label class="radio-inline">
+            <input type="radio" id="p2O" onclick="radio_logic()">O
+        </label>
+    </div>
+    <button onclick="start()" id="strt" style="margin-top: 100px; margin-left: 330px;">Start game</button><BR>
+    <button onclick="settings()" id="sett" style="margin-top: 30px; margin-left: 613px;">Settings</button>
+
+</div>
+
+
+<div id="checkbox_setting" style="display: none; padding: 50px 200px 20px 150px">
+    Toggle X and O on consecutive games
+    <label class="checkbox-inline" style="padding: 75px"><input id="cb1" type="checkbox" value="Yes">Yes</label>
+    <label class="checkbox-inline"><input id ="cb2" type="checkbox" value="No" checked>No</label>
+    <br>
+    <button id="cls" onclick="closed()">Close</button>
+</div>
+
+<div>
+    <p id="p1info" style="float: left; color: crimson; margin-left: 100px "></p>
+    <p id="p2info" style="float: right; color: crimson; margin-right: 100px"></p>
+</div>
+
+<div id="tab" style="display: none">
+    <table class="main colls" id="ticc" >
+        <tr id="r1">
+            <td id="A1" class="text-center"  onclick="plays(this)"></td>
+            <td id="B1" class="text-center"  onclick="plays(this)"></td>
+            <td id="C1" class="text-center"  onclick="plays(this)"></td>
+        </tr>
+        <tr id="r2">
+            <td id="A2" class="text-center"  onclick="plays(this)"></td>
+            <td id="B2" class="text-center"  onclick="plays(this)"></td>
+            <td id="C2" class="text-center"  onclick="plays(this)"></td>
+        </tr>
+        <tr id="r3">
+            <td id="A3" class="text-center"  onclick="plays(this)"></td>
+            <td id="B3" class="text-center"  onclick="plays(this)"></td>
+            <td id="C3" class="text-center"  onclick="plays(this)"></td>
+        </tr>
+    </table>
+</div>
+<div style="padding-left: 600px; margin-top: 30px">
+    <button id="ngm" class="btn btn-primary" style="display: none" onclick="new_game()">New Game</button>
+</div>
+
+<div>
+    <marquee id ="mark" direction="right" scrollamount="15" style="display: none; font-size: xx-large"></marquee>
+</div>
+<!--<button onclick="checkk()">check val</button>-->
+<!--<div>-->
+    <!--<table class="main">-->
+        <!--<tr>-->
+            <!--<td id="a"></td>-->
+            <!--<td id="b"></td>-->
+            <!--<td id="c"></td>-->
+        <!--</tr>-->
+        <!--<tr>-->
+            <!--<td id="d"></td>-->
+            <!--<td id="e"></td>-->
+            <!--<td id="f"></td>-->
+        <!--</tr>-->
+        <!--<tr>-->
+            <!--<td id="g"></td>-->
+            <!--<td id="h"></td>-->
+            <!--<td id="i"></td>-->
+        <!--</tr>-->
+    <!--</table>-->
+<!--</div>-->
+
+<div id="score" style="display: none;margin-top: 100px;">
+    <H2 class="text-center">Score Card</H2>
+    <table id="scr_tab" class="text-center scr_tab">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th id="player1">Player One</th>
+            <th id="player2">player Two</th>
+        </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+    <table class="text-center scr_tab" style="margin-top: 10px">
+        <tr>
+            <td>Total</td>
+            <td id="p1scr">0</td>
+            <td id="p2scr">0</td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>
