@@ -121,9 +121,58 @@ function plays(that) {
     }
 
 }
+
+
+function winX() {
+    document.getElementById('mark').style.display="block";
+    document.getElementById('ngm').style.display="block";
+    if(p1choice=="X"){
+        document.getElementById('mark').innerHTML="Congratulations!!! "+n1+" wins";
+        $('#scr_tab').append("<tr><td>"+ counts+"</td><td style='color: darkblue'>Win</td><td style='color: red'>Loose</td></tr>");
+        counts++;
+        p1scr++;
+        document.getElementById('p1scr').innerHTML=p1scr;
+    }
+
+    else if(p2choice=="X"){
+        document.getElementById('mark').innerHTML="Congratulations!!! "+n2+" wins";
+        $('#scr_tab').append("<tr><td>"+ counts+"</td><td style='color: red'>Loose</td><td style='color: darkblue'>Win</td></tr>");
+        counts++;
+        p2scr++;
+        document.getElementById('p2scr').innerHTML=p2scr;
+    }
+
+}
+
+
+
+function winY() {
+    document.getElementById('ngm').style.display="block";
+    document.getElementById('mark').style.display="block";
+    if(p1choice=="O"){
+        document.getElementById('mark').innerHTML="Congratulations!!! "+n1+" wins";
+        $('#scr_tab').append("<tr><td>"+ counts+"</td><td style='color: darkblue'>Win</td><td style='color: red'>Loose</td></tr>");
+        counts++;
+        p1scr++;
+        document.getElementById('p1scr').innerHTML=p1scr;
+    }
+
+    else if(p2choice=="O"){
+        document.getElementById('mark').innerHTML="Congratulations!!! "+n2+" wins";
+        $('#scr_tab').append("<tr><td>"+ counts+"</td><td style='color: red'>Loose</td><td style='color: darkblue'>Win</td></tr>");
+        counts++;
+        p2scr++;
+        document.getElementById('p2scr').innerHTML=p2scr;
+    }
+}
+
+
+
+
+
 function checks() {
     var winner="Y";
-    if(turn>=5 && turn <= 9)
+    if(turn>=5 && turn < 9)
     {
         winner=wins();
         if(winner=="X" || winner=="O"){
@@ -131,61 +180,41 @@ function checks() {
         }
         if(winner=="X")
         {
-            document.getElementById('mark').style.display="block";
-            document.getElementById('ngm').style.display="block";
-            if(p1choice=="X"){
-                document.getElementById('mark').innerHTML="Congratulations!!! "+n1+" wins";
-                $('#scr_tab').append("<tr><td>"+ counts+"</td><td style='color: darkblue'>Win</td><td style='color: red'>Loose</td></tr>");
-                counts++;
-                p1scr++;
-                document.getElementById('p1scr').innerHTML=p1scr;
-            }
-
-            else if(p2choice=="X"){
-                document.getElementById('mark').innerHTML="Congratulations!!! "+n2+" wins";
-                $('#scr_tab').append("<tr><td>"+ counts+"</td><td style='color: red'>Loose</td><td style='color: darkblue'>Win</td></tr>");
-                counts++;
-                p2scr++;
-                document.getElementById('p2scr').innerHTML=p2scr;
-            }
-
+            winX();
             stopp=1;
-
-
         }
         else if(winner=="O")
         {
-            document.getElementById('ngm').style.display="block";
-            document.getElementById('mark').style.display="block";
-            if(p1choice=="O"){
-                document.getElementById('mark').innerHTML="Congratulations!!! "+n1+" wins";
-                $('#scr_tab').append("<tr><td>"+ counts+"</td><td style='color: darkblue'>Win</td><td style='color: red'>Loose</td></tr>");
-                counts++;
-                p1scr++;
-                document.getElementById('p1scr').innerHTML=p1scr;
-            }
-
-            else if(p2choice=="O"){
-                document.getElementById('mark').innerHTML="Congratulations!!! "+n2+" wins";
-                $('#scr_tab').append("<tr><td>"+ counts+"</td><td style='color: red'>Loose</td><td style='color: darkblue'>Win</td></tr>");
-                counts++;
-                p2scr++;
-                document.getElementById('p2scr').innerHTML=p2scr;
-            }
+            winY();
             stopp=1;
 
         }
 
-
     }
-    else if(turn > 9)
+    else if(turn == 9)
     {
-        alert("This game is a Draw!!")
-        document.getElementById('mark').style.display="block";
-        document.getElementById('mark').innerHTML="Game was a draw";
-        document.getElementById('ngm').style.display="block";
-        $('#scr_tab').append("<tr><td>"+ counts+"</td><td style='color: green'>Draw</td><td style='color: green'>Draw</td></tr>");
+        winner=wins();
+        if(winner=="X" || winner=="O"){
+            stopp=1;
+        }
+        if(winner=="X")
+        {
+            winX();
+            stopp=1;
+        }
+        else if(winner=="O")
+        {
+            winY();
+            stopp=1;
 
+        }
+        else {
+            alert("This game is a Draw!!")
+            document.getElementById('mark').style.display = "block";
+            document.getElementById('mark').innerHTML = "Game was a draw";
+            document.getElementById('ngm').style.display = "block";
+            $('#scr_tab').append("<tr><td>" + counts + "</td><td style='color: green'>Draw</td><td style='color: green'>Draw</td></tr>");
+        }
     }
     else
         return;
