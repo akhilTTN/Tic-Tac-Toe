@@ -61,9 +61,9 @@
 <div id="tab" style="display: none">
     <table class="main colls" id="ticc" >
         <tr id="r1">
-            <td id="A1" class="text-center"  onclick="plays(this)"></td>
-            <td id="B1" class="text-center"  onclick="plays(this)"></td>
-            <td id="C1" class="text-center"  onclick="plays(this)"></td>
+            <td id="A1" class="text-center" onfocus="focus_td(this)" onclick="plays(this)"></td>
+            <td id="B1" class="text-center" onfocus="focus_td(this)" onclick="plays(this)"></td>
+            <td id="C1" class="text-center" onfocus="focus_td(this)" onclick="plays(this)"></td>
         </tr>
         <tr id="r2">
             <td id="A2" class="text-center"  onclick="plays(this)"></td>
@@ -80,6 +80,8 @@
 <div style="padding-left: 600px; margin-top: 30px">
     <button id="ngm" class="btn btn-primary" style="display: none" onclick="new_game()">New Game</button>
 </div>
+
+<div id="chances" style="text-align: center"></div>
 
 <div>
     <marquee id ="mark" direction="right" scrollamount="15" style="display: none; font-size: xx-large"></marquee>

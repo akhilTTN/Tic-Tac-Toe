@@ -19,7 +19,7 @@ var r3c3;
 var counts=1;
 var p1scr=0;
 var p2scr=0;
-
+var stopp=0;
 function start() {
     if(document.getElementById('P1').value=="" || document.getElementById('P2').value=="")
     {
@@ -41,8 +41,7 @@ function start() {
         but.style.display='none';
         scr.style.display='block';
         frm.style.display='none';
-        document.getElementById('p1info').innerHTML="<strong>Player One</strong> is <strong>"+n1+"</strong> and he will be playing as <strong>"+p1choice+"</strong>";
-        document.getElementById('p2info').innerHTML="<strong>Player Two</strong> is <strong>"+n2+"</strong> and he will be playing as <strong>"+p2choice+"</strong>";
+        display_choice();
         document.getElementById('player1').innerHTML=n1;
         document.getElementById('player2').innerHTML=n2;
     }
@@ -50,6 +49,11 @@ function start() {
 
 }
 
+function display_choice() {
+    document.getElementById('p1info').innerHTML="<strong>Player One</strong> is <strong>"+n1+"</strong> and he will be playing as <strong>"+p1choice+"</strong>";
+    document.getElementById('p2info').innerHTML="<strong>Player Two</strong> is <strong>"+n2+"</strong> and he will be playing as <strong>"+p2choice+"</strong>";
+    document.getElementById('chances').innerHTML="Its "+n1+"'s turn";
+}
 
 function radio_logic() {
     if(document.getElementById('p1X').checked){
@@ -84,9 +88,10 @@ function radio_logic() {
 
 
 function plays(that) {
-    if(that.innerHTML==""){
+    if(that.innerHTML=="" && stopp==0){
         if(chances==1)
         {
+            document.getElementById('chances').innerHTML="Its "+n2+"'s turn";
             that.innerHTML=p1choice;
             chances=2;
             that.style.backgroundColor='red';
@@ -98,6 +103,7 @@ function plays(that) {
         }
         else if(chances==2)
         {
+            document.getElementById('chances').innerHTML="Its "+n1+"'s turn";
             that.innerHTML=p2choice;
             chances=1;
             that.style.backgroundColor='green';
@@ -110,6 +116,9 @@ function plays(that) {
     else if(that.innerHTML=="X" || that.innerHTML=="O"){
         alert("alreay marked this tile");
     }
+    else if(stopp==1){
+        alert("can not mark tiles now. cick on new game");
+    }
 
 }
 function checks() {
@@ -117,31 +126,53 @@ function checks() {
     if(turn>=5 && turn < 9)
     {
         winner=wins();
+        if(winner=="X" || winner=="O"){
+            stopp=1;
+        }
         if(winner=="X")
         {
             document.getElementById('mark').style.display="block";
-            if(p1choice=="X")
-                document.getElementById('mark').innerHTML="Congratulations!!! "+n1+" wins";
-            else if(p2choice=="X")
-                document.getElementById('mark').innerHTML="Congratulations!!! "+n2+" wins";
             document.getElementById('ngm').style.display="block";
-            $('#scr_tab').append("<tr><td>"+ counts+"</td><td style='color: darkblue'>Win</td><td style='color: red'>Loose</td></tr>");
-            counts++;
-            p1scr++;
-            document.getElementById('p1scr').innerHTML=p1scr;
+            if(p1choice=="X"){
+                document.getElementById('mark').innerHTML="Congratulations!!! "+n1+" wins";
+                $('#scr_tab').append("<tr><td>"+ counts+"</td><td style='color: darkblue'>Win</td><td style='color: red'>Loose</td></tr>");
+                counts++;
+                p1scr++;
+                document.getElementById('p1scr').innerHTML=p1scr;
+            }
+
+            else if(p2choice=="X"){
+                document.getElementById('mark').innerHTML="Congratulations!!! "+n2+" wins";
+                $('#scr_tab').append("<tr><td>"+ counts+"</td><td style='color: red'>Loose</td><td style='color: darkblue'>Win</td></tr>");
+                counts++;
+                p2scr++;
+                document.getElementById('p2scr').innerHTML=p2scr;
+            }
+
+            stopp=1;
+
+
         }
         else if(winner=="O")
         {
             document.getElementById('ngm').style.display="block";
             document.getElementById('mark').style.display="block";
-            if(p1choice=="O")
+            if(p1choice=="O"){
                 document.getElementById('mark').innerHTML="Congratulations!!! "+n1+" wins";
-            else if(p2choice=="O")
-                document.getElementById('mark').innerHTML="Congratulations!!! "+n2+" wins";            // alert("Congratulations!!! "+n2+" wins");
-            $('#scr_tab').append("<tr><td>"+ counts+"</td><td style='color: red'>Loose</td><td style='color: darkblue'>Win</td></tr>");
-            counts++;
-            p2scr++;
-            document.getElementById('p2scr').innerHTML=p2scr;
+                $('#scr_tab').append("<tr><td>"+ counts+"</td><td style='color: darkblue'>Win</td><td style='color: red'>Loose</td></tr>");
+                counts++;
+                p1scr++;
+                document.getElementById('p1scr').innerHTML=p1scr;
+            }
+
+            else if(p2choice=="O"){
+                document.getElementById('mark').innerHTML="Congratulations!!! "+n2+" wins";
+                $('#scr_tab').append("<tr><td>"+ counts+"</td><td style='color: red'>Loose</td><td style='color: darkblue'>Win</td></tr>");
+                counts++;
+                p2scr++;
+                document.getElementById('p2scr').innerHTML=p2scr;
+            }
+            stopp=1;
 
         }
 
@@ -274,6 +305,9 @@ function new_game() {
         p1choice=p2choice;
         p2choice=temp;
     }
+    display_choice();
+    stopp=0;
+    document.getElementById('mark').innerHTML=" ";
 }
 
 
@@ -297,4 +331,29 @@ function closed() {
 //     document.getElementById('g').innerHTML=r3c1;
 //     document.getElementById('h').innerHTML=r3c2;
 //     document.getElementById('i').innerHTML=r3c3;
+// /}
+
+
+// function focus_td(that) {
+//     if(that.innerHTML!="X" || that.innerHTML!="O"){
+//         if(chances==1){
+//             that.
+//         }
+//     }
 // }
+// $(document).ready(function () {
+//     $("#r1").find("td").hover(function () {
+//         if(chances==1)
+//             $(this).html(p1choice);
+//         else if(chances==2)
+//             $(this).html(p2choice);
+//     },function () {
+//         if(chances==1)
+//             $(this).html(" ");
+//         else if(chances==2)
+//             $(this).html(" ");
+//     });
+// //
+// //
+// //
+// });
