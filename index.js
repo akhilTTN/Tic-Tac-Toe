@@ -123,7 +123,7 @@ function plays(that) {
 }
 function checks() {
     var winner="Y";
-    if(turn>=5 && turn < 9)
+    if(turn>=5 && turn <= 9)
     {
         winner=wins();
         if(winner=="X" || winner=="O"){
@@ -178,7 +178,7 @@ function checks() {
 
 
     }
-    else if(turn ==9)
+    else if(turn > 9)
     {
         alert("This game is a Draw!!")
         document.getElementById('mark').style.display="block";
